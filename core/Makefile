@@ -1308,6 +1308,8 @@ else
     $(INTERNAL_OTA_PACKAGE_TARGET): persist := true
 endif
 
+$(INTERNAL_OTA_PACKAGE_TARGET): backuptool := true
+
 $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	@echo "Package OTA: $@"
 	$(OTA_FROM_TARGET_SCRIPT) -v \
@@ -1316,6 +1318,7 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   --no_assert=$(skip_assert) \
 	   --persist=$(persist) \
 	   --override_device=$(override_device) \
+           --backup=$(backuptool) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
 .PHONY: otapackage bacon
