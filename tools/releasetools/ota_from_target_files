@@ -416,6 +416,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("*     \\ \\_\\ \\_\\ \\_____\\ \\_\\ \\_\\\\ \\_\\    *");
   script.Print("*      \\/_/\\/_/\\/_____/\\/_/\\/_/ \\/_/   *");
   script.Print("*                                      *");
+  script.Print("*         IceColdJelly Edition         *");
+  script.Print("*                                      *");
   script.Print("****************************************");
 
   if "selinux_fc" in OPTIONS.info_dict:
@@ -437,8 +439,6 @@ def WriteFullOTAPackage(input_zip, output_zip):
   common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
   script.ShowProgress(0.2, 0)
-
-  script.WelcomeText("")
 
   script.ShowProgress(0.2, 10)
   script.WriteRawImage("/boot", "boot.img")
