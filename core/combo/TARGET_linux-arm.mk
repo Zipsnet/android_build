@@ -70,8 +70,7 @@ ifeq ($(USE_MORE_OPT_FLAGS),yes)
     TARGET_arm_CFLAGS :=    -O3 \
                             -fomit-frame-pointer \
                             -fstrict-aliasing    \
-                            -funswitch-loops \
-                            -floop-interchange -floop-strip-mine -floop-block -fgraphite-identity
+                            -funswitch-loops
 else
     TARGET_arm_CFLAGS :=    -O2 \
                             -fomit-frame-pointer \
