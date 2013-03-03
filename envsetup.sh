@@ -61,11 +61,11 @@ function check_product()
     fi
 
     if (echo -n $1 | grep -q -e "^aokp_") ; then
-       AOKP_TARGET=$(echo -n $1 | sed -e 's/^aokp_//g')
+       AOKP_PRODUCT=$(echo -n $1 | sed -e 's/^aokp_//g')
     else
-       AOKP_TARGET=
+       AOKP_PRODUCT=
     fi
-    export AOKP_TARGET
+      export AOKP_PRODUCT
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
         TARGET_PRODUCT=$1 \
@@ -1163,7 +1163,7 @@ function smoketest()
         return
     fi
 
-    (cd "$T" && mmm tests/SmokeTest) &&
+    (cd "$T" && make SmokeTest SmokeTestApp) &&
       adb uninstall com.android.smoketest > /dev/null &&
       adb uninstall com.android.smoketest.tests > /dev/null &&
       adb install $ANDROID_PRODUCT_OUT/data/app/SmokeTestApp.apk &&
