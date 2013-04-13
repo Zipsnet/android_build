@@ -103,9 +103,8 @@ class EdifyGenerator(object):
 
   def IceOverlay(self, command):
     self.script.append('### Overlay script')
-    self.script.append('package_extract_dir("setup", "/system/setup");')
-    self.script.append('set_perm_recursive(0, 2000, 0755, 0755, "/system/setup");')
-    self.script.append('run_program("/system/setup/overlay");')
+    self.script.append('set_perm(0, 0, 0777, "/system/bin/overlay.sh");')
+    self.script.append('run_program("/system/bin/overlay.sh", "");')
     self.script.append('### End Overlay')
 
   def WipeCache(self, command):
