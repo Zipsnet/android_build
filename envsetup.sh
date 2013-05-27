@@ -62,12 +62,12 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^aokp_") ; then
-       AOKP_PRODUCT=$(echo -n $1 | sed -e 's/^aokp_//g')
+    if (echo -n $1 | grep -q -e "^icecold_") ; then
+       ICECOLD_PRODUCT=$(echo -n $1 | sed -e 's/^icecold_//g')
     else
-       AOKP_PRODUCT=
+       ICECOLD_PRODUCT=
     fi
-      export AOKP_PRODUCT
+      export ICECOLD_PRODUCT
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
         TARGET_PRODUCT=$1 \
@@ -445,7 +445,7 @@ function print_lunch_menu()
     echo
     echo "You're building on" $uname
     echo
-    if [ "z${AOKP_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${ICECOLD_DEVICES_ONLY}" != "z" ]; then
        echo "Breakfast menu... pick a combo:"
     else
        echo "Lunch menu... pick a combo:"
@@ -459,7 +459,7 @@ function print_lunch_menu()
         i=$(($i+1))
     done
 
-    if [ "z${AOKP_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${ICECOLD_DEVICES_ONLY}" != "z" ]; then
        echo "... and don't forget the bacon!"
     fi
 
@@ -481,7 +481,7 @@ function brunch()
 function breakfast()
 {
     target=$1
-    AOKP_DEVICES_ONLY="true"
+    ICECOLD_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
     for f in `/bin/ls vendor/aokp/vendorsetup.sh 2> /dev/null`
@@ -500,8 +500,8 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the AOKP model name
-            lunch aokp_$target-userdebug
+            # This is probably just the ICECOLD model name
+            lunch icecold_$target-userdebug
         fi
     fi
     return $?
@@ -1313,7 +1313,7 @@ function taco() {
         breakfast $sauce
         if [ $? -eq 0 ]; then
             croot
-            ./vendor/aokp/bot/build_device.sh aokp_$sauce-userdebug $sauce
+            ./vendor/aokp/bot/build_device.sh icecold_$sauce-userdebug $sauce
         else
             echo "No such item in brunch menu. Try 'breakfast'"
         fi
